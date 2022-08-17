@@ -29,6 +29,7 @@ import (
 // TestingT is the minimal subset of testing.TB that we use.
 type TestingT interface {
 	Error(...interface{})
+	Helper()
 }
 
 // filterStacks will filter any stacks excluded by the given opts.
@@ -74,6 +75,7 @@ func Find(options ...Option) error {
 // tests by doing:
 // 	defer VerifyNone(t)
 func VerifyNone(t TestingT, options ...Option) {
+	t.Helper()
 	if err := Find(options...); err != nil {
 		t.Error(err)
 	}

@@ -73,6 +73,8 @@ func (ft *fakeT) Error(args ...interface{}) {
 	ft.errors = append(ft.errors, fmt.Sprint(args...))
 }
 
+func (*fakeT) Helper() {}
+
 func TestVerifyNone(t *testing.T) {
 	ft := &fakeT{}
 	VerifyNone(ft)
